@@ -10,5 +10,13 @@
             priority="com.redcloud.plugin.process.CompleteSalesOrder">
       </process>
    </extension>
+   <extension
+         id="com.redcloud.plugin.form.WCreateFromRedMain"
+         name="WCreateFromRedMain"
+         point="org.adempiere.webui.Form">
+      <form
+            class="com.redcloud.plugin.form.WCreateFromRedMain">
+      </form>
+   </extension>
 
 </plugin>

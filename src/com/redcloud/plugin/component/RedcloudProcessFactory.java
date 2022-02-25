@@ -6,7 +6,7 @@ import org.compiere.process.ProcessCall;
 import com.redcloud.plugin.process.CompleteSalesOrder;
 
 
-public class CompleteSalesOrderFactory implements IProcessFactory {
+public class RedcloudProcessFactory implements IProcessFactory {
 
 	@Override
 	public ProcessCall newProcessInstance(String className) {
