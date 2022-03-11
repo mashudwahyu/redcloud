@@ -14,7 +14,7 @@
  * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
-package com.redcloud.plugin.model;
+package com.redcloud.plugin;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -63,7 +63,6 @@ public interface I_RED_Main
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
-
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";

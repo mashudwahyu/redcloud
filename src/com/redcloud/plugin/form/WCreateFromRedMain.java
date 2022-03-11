@@ -14,7 +14,6 @@
 
 	package com.redcloud.plugin.form;
 
-	import java.math.BigDecimal;
 	import java.util.ArrayList;
 	import java.util.Vector;
 	import java.util.logging.Level;
@@ -32,24 +31,21 @@
 	import org.adempiere.webui.component.Panel;
 	import org.adempiere.webui.component.Row;
 	import org.adempiere.webui.component.Rows;
-	import org.adempiere.webui.editor.WNumberEditor;
-	import org.adempiere.webui.editor.WStringEditor;
 	import org.adempiere.webui.event.ValueChangeEvent;
 	import org.adempiere.webui.event.ValueChangeListener;
 	import org.compiere.model.GridTab;
 	import org.compiere.util.CLogger;
-	import org.compiere.util.DisplayType;
 	import org.compiere.util.Env;
 	import org.compiere.util.KeyNamePair;
 	import org.compiere.util.Msg;
 	import org.zkoss.zk.ui.event.Event;
 	import org.zkoss.zk.ui.event.EventListener;
-	import org.zkoss.zk.ui.event.Events;
 	import org.zkoss.zul.Vlayout;
 
 	public class WCreateFromRedMain extends CreateFromRedMain implements EventListener<Event>, ValueChangeListener
 	{
 		private WCreateFromWindow window;
+		
 		public WCreateFromRedMain(GridTab gridTab) {
 			super(gridTab);
 			// TODO Auto-generated constructor stub
@@ -79,20 +75,14 @@
 	    protected Label orgLabel = new Label();
 	    protected Listbox organizationField = ListboxFactory.newDropdownListbox();
 	    
-	    protected Label productLabel = new Label();
-	    protected Listbox productField = ListboxFactory.newDropdownListbox();
+//	    protected Label productLabel = new Label();
+//	    protected Listbox productField = ListboxFactory.newDropdownListbox();
 
 	    protected Label reqLabel = new Label();
 	    protected Listbox requisitionField = ListboxFactory.newDropdownListbox();
 		
-		protected Label nameLabel = new Label();
-		protected WStringEditor nameField = new WStringEditor();
-		
-		protected Label qtyLabel = new Label();
-		protected WNumberEditor qtyField = new WNumberEditor();
-		
-		protected Label uomLabel = new Label();
-		protected Listbox uomField = ListboxFactory.newDropdownListbox();
+//		 protected Label uomLabel = new Label();
+//		 protected Listbox uomField = ListboxFactory.newDropdownListbox();
 		
 		protected int m_AD_Client_ID = 0;
 	    
@@ -108,14 +98,10 @@
 			super.dynInit();
 			
 			window.setTitle(getTitle());
-
-			nameField = new WStringEditor ("Name", false, false, true, 10, 30, null, null);
-			nameField.getComponent().addEventListener(Events.ON_CHANGE, this);
 			
-			qtyField = new WNumberEditor("kst_qty", false, false, true,DisplayType.Quantity , "Qty");
-			qtyField.setValue(Env.ZERO);
-			
+			//initProductDetails();
 			initOrganizationDetails();
+			//initUOMDetails();
 			loadRequisition();
 			return true;
 		}   //  dynInit
@@ -123,11 +109,9 @@
 		protected void zkInit() throws Exception
 		{ 
 	    	orgLabel.setText(Msg.translate(Env.getCtx(), "AD_Org_ID"));
-	    	productLabel.setText(Msg.translate(Env.getCtx(), "M_Product"));
+//	    	productLabel.setText(Msg.translate(Env.getCtx(), "M_Product_ID"));
 	        reqLabel.setText(Msg.translate(Env.getCtx(), "M_Requisition_ID"));
-	        nameLabel.setText(Msg.getElement(Env.getCtx(), "Name", false));
-	        qtyLabel.setText(Msg.getElement(Env.getCtx(), "Qty", false));
-	        uomLabel.setText(Msg.translate(Env.getCtx(), "C_UOM_ID"));
+//	        uomLabel.setText(Msg.translate(Env.getCtx(), "C_UOM_ID"));
 
 			Vlayout vlayout = new Vlayout();
 			vlayout.setVflex("1");
@@ -143,41 +127,28 @@
 			Row row = rows.newRow();
 			row.appendChild(orgLabel.rightAlign());
 			row.appendChild(organizationField);
-
-			productField.setHflex("1");
-			row.appendChild(productLabel.rightAlign());
-			row.appendChild(productField);
 			
-			row = rows.newRow();
-			row.appendChild(nameLabel.rightAlign());
-			row.appendChild(nameField.getComponent());
+			reqLabel.setHflex("1");
+			row.appendChild(reqLabel.rightAlign());
+			row.appendChild(requisitionField);
 
-	        row.appendChild(reqLabel.rightAlign());
-	        row.appendChild(requisitionField);
-	        requisitionField.setHflex("1");
-	        
-	        row = rows.newRow();
-			row.appendChild(qtyLabel.rightAlign());
-			row.appendChild(qtyField.getComponent());
-		
-			row.appendChild(uomLabel.rightAlign());
-	        row.appendChild(uomField);
-	        uomField.setHflex("1");
-
-			
+//			productField.setHflex("1");
+//			row.appendChild(productLabel.rightAlign());
+//			row.appendChild(productField);
+//			
+//		
+//			row.appendChild(uomLabel.rightAlign());
+//	        row.appendChild(uomField);
+//	        uomField.setHflex("1");
 
 		}
 
-		private boolean 	m_actionActive = false;
+		private boolean m_actionActive = false;
 
-		private int M_Product_ID;
-		private int C_UOM_ID;
+//		private int M_Product_ID;
+//		private int C_UOM_ID;
 
 		private int M_Requisition_ID;
-
-		private String m_name;
-		
-		private BigDecimal m_qty;
 		
 		/**
 		 *  Action Listener
@@ -202,18 +173,17 @@
 	                initRequisitionDetails();
 	            }
 	        }
-			// Product Category
-	        if (e.getTarget().equals(productField))
-	        {
-	            KeyNamePair pp = productField.getSelectedItem().toKeyNamePair();
-	            if (pp == null)
-	                ;
-	            else
-	            {
-	                M_Product_ID = pp.getKey();
-	                loadRequisition();
-	            }
-	        }
+//	        if (e.getTarget().equals(productField))
+//	        {
+//	            KeyNamePair pp = productField.getSelectedItem().toKeyNamePair();
+//	            if (pp == null)
+//	                ;
+//	            else
+//	            {
+//	                M_Product_ID = pp.getKey();
+//	                loadRequisition();
+//	            }
+//	        }
 			
 	        else if (e.getTarget().equals(requisitionField))
 	        {
@@ -226,27 +196,17 @@
 	                loadRequisition();
 	            }
 	        }
-			else if (e.getTarget().equals(nameField.getComponent()))
-			{
-				m_name = nameField.getDisplay();
-				loadRequisition();
-			}
-			else if (e.getTarget().equals(qtyField.getComponent()))
-			{
-				m_qty = (BigDecimal)qtyField.getValue();
-				loadRequisition();
-			}
-			else if (e.getTarget().equals(uomField))
-				{
-		            KeyNamePair pp = uomField.getSelectedItem().toKeyNamePair();
-		            if (pp == null)
-		                ;
-		            else
-		            {
-		                C_UOM_ID = pp.getKey();
-		                loadRequisition();
-		            }
-		        }
+//			else if (e.getTarget().equals(uomField))
+//				{
+//		            KeyNamePair pp = uomField.getSelectedItem().toKeyNamePair();
+//		            if (pp == null)
+//		                ;
+//		            else
+//		            {
+//		                C_UOM_ID = pp.getKey();
+//		                loadRequisition();
+//		            }
+//		        }
 			m_actionActive = false;
 		}
 			
@@ -256,19 +216,10 @@
 		 */
 		public void valueChange (ValueChangeEvent e)
 		{
+			
 			if (log.isLoggable(Level.CONFIG)) log.config(e.getPropertyName() + "=" + e.getNewValue());
 
 			log.warning(" test "+e.getPropertyName());
-			if (e.getPropertyName().equals("Name"))
-			{
-				m_name = nameField.getDisplay();
-				loadRequisition();
-			}
-			else if (e.getPropertyName().equals("Qty"))
-			{
-				m_qty = (BigDecimal)qtyField.getValue();
-				loadRequisition();
-			}
 			window.tableChanged(null);
 		}   //  vetoableChange
 
@@ -290,10 +241,42 @@
 				
 			}
 			// modified by @ZuhriUtama
-			//organizationField.addActionListener(this);
+			organizationField.addActionListener(this);
 			initRequisitionDetails(); // init Requisition
 			// end modified by @ZuhriUtama
 		}
+//		private void initProductDetails()
+//		{
+//		    productField.removeActionListener(this);
+//		    productField.removeAllItems();
+//		    //  None
+//		    KeyNamePair pp = new KeyNamePair(0,"");
+//		    productField.addItem(pp);
+//		    
+//		    ArrayList<KeyNamePair> list = loadProductData();
+//			for(KeyNamePair knp : list)
+//				productField.addItem(knp);
+//			
+//			productField.setSelectedIndex(0);
+//			productField.addActionListener(this);
+//		}
+//		
+//		private void initUOMDetails()
+//		{
+//		    uomField.removeActionListener(this);
+//		    uomField.removeAllItems();
+//		    //  None
+//		    KeyNamePair pp = new KeyNamePair(0,"");
+//		    uomField.addItem(pp);
+//		    
+//		    ArrayList<KeyNamePair> list = loadUOMData();
+//			for(KeyNamePair knp : list)
+//				uomField.addItem(knp);
+//			
+//			uomField.setSelectedIndex(0);
+//			
+//			uomField.addActionListener(this);
+//		}
 		
 				
 		/**
@@ -321,7 +304,7 @@
 		 */
 		protected void loadRequisition ()
 		{
-			loadTableOIS(getRequisitionData(AD_Org_ID, M_Requisition_ID, M_Product_ID, m_name, m_qty, C_UOM_ID));
+			loadTableOIS(getRequisitionData(AD_Org_ID, M_Requisition_ID)); //, M_Product_ID, C_UOM_ID
 		}
 			
 		/**

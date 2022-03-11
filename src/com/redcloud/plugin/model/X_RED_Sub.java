@@ -32,7 +32,7 @@ public class X_RED_Sub extends PO implements I_RED_Sub, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20220225L;
+	private static final long serialVersionUID = 20220304L;
 
     /** Standard Constructor */
     public X_RED_Sub (Properties ctx, int RED_Sub_ID, String trxName)

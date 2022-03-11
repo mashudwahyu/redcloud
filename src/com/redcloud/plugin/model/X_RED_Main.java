@@ -30,7 +30,7 @@ public class X_RED_Main extends PO implements I_RED_Main, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20220225L;
+	private static final long serialVersionUID = 20220304L;
 
     /** Standard Constructor */
     public X_RED_Main (Properties ctx, int RED_Main_ID, String trxName)
@@ -72,6 +72,7 @@ public class X_RED_Main extends PO implements I_RED_Main, I_Persistent
         .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
+
 
 	/** Set Create lines from.
 		@param CreateFrom 

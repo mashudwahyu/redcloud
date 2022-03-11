@@ -14,25 +14,25 @@
  * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
-package com.redcloud.plugin.model;
+package com.redcloud.plugin;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for RED_Main
+/** Generated Interface for RED_Sub
  *  @author iDempiere (generated) 
  *  @version Release 8.2
  */
 @SuppressWarnings("all")
-public interface I_RED_Main 
+public interface I_RED_Sub 
 {
 
-    /** TableName=RED_Main */
-    public static final String Table_Name = "RED_Main";
+    /** TableName=RED_Sub */
+    public static final String Table_Name = "RED_Sub";
 
-    /** AD_Table_ID=1000139 */
+    /** AD_Table_ID=1000140 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -64,6 +64,35 @@ public interface I_RED_Main
 	  */
 	public int getAD_Org_ID();
 
+    /** Column name C_BPartner_ID */
+    public static final String COLUMNNAME_C_BPartner_ID = "C_BPartner_ID";
+
+	/** Set Business Partner .
+	  * Identifies a Business Partner
+	  */
+	public void setC_BPartner_ID (int C_BPartner_ID);
+
+	/** Get Business Partner .
+	  * Identifies a Business Partner
+	  */
+	public int getC_BPartner_ID();
+
+	public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException;
+
+    /** Column name C_UOM_ID */
+    public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
+
+	/** Set UOM.
+	  * Unit of Measure
+	  */
+	public void setC_UOM_ID (int C_UOM_ID);
+
+	/** Get UOM.
+	  * Unit of Measure
+	  */
+	public int getC_UOM_ID();
+
+	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -80,19 +109,6 @@ public interface I_RED_Main
 	  * User who created this records
 	  */
 	public int getCreatedBy();
-
-    /** Column name CreateFrom */
-    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
-
-	/** Set Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public void setCreateFrom (String CreateFrom);
-
-	/** Get Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public String getCreateFrom();
 
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";
@@ -148,18 +164,46 @@ public interface I_RED_Main
 
 	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException;
 
+    /** Column name M_RequisitionLine_ID */
+    public static final String COLUMNNAME_M_RequisitionLine_ID = "M_RequisitionLine_ID";
+
+	/** Set Requisition Line.
+	  * Material Requisition Line
+	  */
+	public void setM_RequisitionLine_ID (int M_RequisitionLine_ID);
+
+	/** Get Requisition Line.
+	  * Material Requisition Line
+	  */
+	public int getM_RequisitionLine_ID();
+
+	public org.compiere.model.I_M_RequisitionLine getM_RequisitionLine() throws RuntimeException;
+
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
 
-	/** Set Name.
+	/** Set Name Product.
 	  * Alphanumeric identifier of the entity
 	  */
 	public void setName (String Name);
 
-	/** Get Name.
+	/** Get Name Product.
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
+
+    /** Column name Qty */
+    public static final String COLUMNNAME_Qty = "Qty";
+
+	/** Set Quantity.
+	  * Quantity
+	  */
+	public void setQty (BigDecimal Qty);
+
+	/** Get Quantity.
+	  * Quantity
+	  */
+	public BigDecimal getQty();
 
     /** Column name RED_Main_ID */
     public static final String COLUMNNAME_RED_Main_ID = "RED_Main_ID";
@@ -170,14 +214,25 @@ public interface I_RED_Main
 	/** Get Redcloud Main	  */
 	public int getRED_Main_ID();
 
-    /** Column name RED_Main_UU */
-    public static final String COLUMNNAME_RED_Main_UU = "RED_Main_UU";
+	public I_RED_Main getRED_Main() throws RuntimeException;
 
-	/** Set RED_Main_UU	  */
-	public void setRED_Main_UU (String RED_Main_UU);
+    /** Column name RED_Sub_ID */
+    public static final String COLUMNNAME_RED_Sub_ID = "RED_Sub_ID";
 
-	/** Get RED_Main_UU	  */
-	public String getRED_Main_UU();
+	/** Set Redcloud Sub	  */
+	public void setRED_Sub_ID (int RED_Sub_ID);
+
+	/** Get Redcloud Sub	  */
+	public int getRED_Sub_ID();
+
+    /** Column name RED_Sub_UU */
+    public static final String COLUMNNAME_RED_Sub_UU = "RED_Sub_UU";
+
+	/** Set RED_Sub_UU	  */
+	public void setRED_Sub_UU (String RED_Sub_UU);
+
+	/** Get RED_Sub_UU	  */
+	public String getRED_Sub_UU();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -194,17 +249,4 @@ public interface I_RED_Main
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
-
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
-
-	/** Set Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public void setValue (String Value);
-
-	/** Get Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public String getValue();
 }

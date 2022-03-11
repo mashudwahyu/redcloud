@@ -8,7 +8,7 @@ import com.redcloud.plugin.model.I_RED_Main;
 
 import com.redcloud.plugin.form.WCreateFromRedMain;
 
-public class RedcloudFCreateFromFactory implements ICreateFromFactory{
+public class RedcloudCreateFromFactory implements ICreateFromFactory{
 
 	@Override
 	public ICreateFrom create(GridTab mTab) {
